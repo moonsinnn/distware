@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Plan;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +16,7 @@ class PlanList extends Component
     {
         $this->applyFilter();
         if ($this->filtering) {
-            $this->emit('filteringEnabled');
+            $this->dispatch('filteringEnabled');
         }
     }
 

@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
-use App\Models\License;
-use App\Models\Plan;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 
-class LicenseList extends Component
+class UserList extends Component
 {
     use WithDataTable {
         filter as applyFilter;
     }
 
-    public string $plan = '';
+    public string $role = '';
 
-    public string $status = '';
+    public string $enabled = '';
 
     public string $fromDate = '';
 
@@ -25,32 +25,32 @@ class LicenseList extends Component
     {
         $this->applyFilter();
         if ($this->filtering) {
-            $this->emit('filteringEnabled');
+            $this->dispatch('filteringEnabled');
         }
     }
 
     public function render()
     {
-        $query = License::query();
+        $query = User::query();
         if ($this->q) {
             $query = $query->where(function ($query) {
                 /** @var Builder $query */
                 $query->where('name', 'like', "%$this->q%")
-                    ->orWhere('email', 'like', "%$this->q%")
-                    ->orWhere('phone', 'like', "%$this->q%")
-                    ->orWhere('code', 'like', "%$this->q%");
+                    ->orWhere('email', 'like', "%$this->q%");
             });
         }
 
-        if ($this->plan) {
-            $query = $query->whereHas('plan', function ($query) {
+        if ($this->role === '0') {
+            $query = $query->whereDoesntHave('roles');
+        } elseif ($this->role) {
+            $query = $query->whereHas('roles', function ($query) {
                 /** @var Builder $query */
-                $query->whereKey($this->plan);
+                $query->whereKey($this->role);
             });
         }
 
-        if ($this->status) {
-            $query = $query->where('status', $this->status);
+        if ($this->enabled !== '') {
+            $query = $query->where('enabled', $this->enabled === '1');
         }
 
         if ($this->fromDate) {
@@ -65,9 +65,9 @@ class LicenseList extends Component
             $query = $query->orderBy($column, $direction);
         }
 
-        $licenses = $query->paginate($this->length);
-        $plans = Plan::all();
+        $users = $query->paginate($this->length);
+        $roles = Role::all();
 
-        return view('livewire.license-list', compact('plans', 'licenses'));
+        return view('livewire.user-list', compact('roles', 'users'));
     }
 }

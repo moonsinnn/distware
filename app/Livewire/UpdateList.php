@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Update;
 use Livewire\Component;
@@ -21,7 +21,7 @@ class UpdateList extends Component
     {
         $this->applyFilter();
         if ($this->filtering) {
-            $this->emit('filteringEnabled');
+            $this->dispatch('filteringEnabled');
         }
     }
 

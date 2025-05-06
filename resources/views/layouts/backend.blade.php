@@ -2,7 +2,6 @@
 
 @push('styles')
     @vite('resources/styl/flatpickr.styl')
-    <livewire:styles />
 @endpush
 
 @section('body')

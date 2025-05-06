@@ -1,3 +1,10 @@
+// Correct order in _variables.scss
+@use "bootstrap/scss/functions";
+@use "bootstrap/scss/variables";
+@use "bootstrap/scss/variables-dark";
+@use "bootstrap/scss/mixins";  // This is where _assert-ascending is defined
+
+// Now define your custom variables
 $primary: #0076ba;
 $secondary: #ff9300;
 
@@ -21,14 +28,11 @@ $line-height-base: 1.5;
 
 $navbar-light-toggler-border-color: none;
 
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
-@import "bootstrap/scss/variables-dark";
+// Your other custom variables
+$s2bs5-clear-icon: variables.$btn-close-bg;
 
-$s2bs5-clear-icon: $btn-close-bg;
-
-$s2bs5-padding-x: calc($input-padding-x / 2);
+$s2bs5-padding-x: calc(variables.$input-padding-x / 2);
 $s2bs5-padding-y: $s2bs5-padding-x;
 
-$s2bs5-multi-item-padding-x: $badge-padding-x;
-$s2bs5-multi-item-padding-y: calc($badge-padding-x / 2);
+$s2bs5-multi-item-padding-x: variables.$badge-padding-x;
+$s2bs5-multi-item-padding-y: calc(variables.$badge-padding-x / 2);

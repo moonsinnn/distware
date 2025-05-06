@@ -1,10 +1,14 @@
-@import "variables";
-@import "bootstrap/scss/bootstrap";
-@import "@algolia/autocomplete-theme-classic/dist/theme.css";
-@import "select2/src/scss/core";
-@import "select2-bootstrap-5-theme/src/include-all";
-@import "trumbowyg/dist/ui/sass/trumbowyg";
+// Pertama impor Bootstrap terlebih dahulu secara utuh
+@use "bootstrap/scss/bootstrap";
 
+// Kemudian impor variables custom yang meng-override Bootstrap
+@use "variables";
+
+// Terakhir impor library lain yang bergantung pada Bootstrap
+@use "@algolia/autocomplete-theme-classic/dist/theme.css";
+@use "select2/src/scss/core";
+@use "select2-bootstrap-5-theme/src/include-all";
+@use "trumbowyg/dist/ui/sass/trumbowyg";
 .aa {
     &-Autocomplete {
         color: $body-color;

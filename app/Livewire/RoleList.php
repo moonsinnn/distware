@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +19,7 @@ class RoleList extends Component
     {
         $this->applyFilter();
         if ($this->filtering) {
-            $this->emit('filteringEnabled');
+            $this->dispatch('filteringEnabled');
         }
     }
 

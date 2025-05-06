@@ -22,7 +22,7 @@
             <div class="col-sm-6 col-md-4 col-xl-3">
                 <div class="mb-3 mb-md-0">
                     <label class="form-label" for="filter-search">{{ __('Search') }}</label>
-                    <input class="form-control" id="filter-search" placeholder="{{ __('Enter name') }}&hellip;" wire:model.debounce.500ms="q" value="{{ $q }}">
+                    <input class="form-control" id="filter-search" placeholder="{{ __('Enter name') }}&hellip;" wire:model.live.debounce.500ms="q" value="{{ $q }}">
                 </div>
             </div>
             <div class="col-sm-6 col-md-4 col-xl-3" wire:ignore>
